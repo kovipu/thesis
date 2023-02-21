@@ -1,0 +1,20 @@
+
+\keywords{encryption, cryptography, public cloud}
+
+\begin{abstract}
+The Finnish laws on individual's data security as well as The General Data Protection Regulation (EU) (GDPR) are legislations requiring caution from an organization handling private data.
+A healthcare organization is required to exercise extreme caution when handling health data as the GDPR considers individual's health data ''a special category of personal data'', as it is sensitive by nature.
+
+Public cloud providers such as Google Cloud Platform promise to make developing and hosting web applications simpler.
+However trusting a third party such as Google with individual's health data increases the requirements for security.
+The developer may want to implement additional security measures on top of those provided by default by the cloud provider. Modern cryptographic algorithms use keys to encrypt and decrypt data. However, storing the keys in a secure and performant way is no simple task.
+
+This thesis includes an implementation of a server application built to mimic a real world application for handling patient data.
+The application is built with TypeScript and hosted in Google Cloud Platform's services.
+The application is used to analyze the added complexity and performance deficit of implementing strong encryption.
+
+The complexity and performance differences with the application in encrypted mode are notable.
+However, a lot of the complexity can be mitigated with good design.
+No complex cryptographic algorithms have to be understood by the developer to be able to implement strong encryption.
+Existing tools and libraries handle most of the work.
+\end{abstract}

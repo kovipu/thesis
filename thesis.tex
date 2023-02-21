@@ -1,0 +1,104 @@
+\documentclass[language=english,version=final,mainfont=none,sharelatex=true,minted=true]{utuftthesis}
+\setcounter{secnumdepth}{2}
+\setcounter{tocdepth}{2}
+\usepackage{float}
+\usepackage[caption=false]{subfig}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{csvsimple-legacy}
+\usepackage{longtable}
+
+\graphicspath{ {./images/} }
+
+% Define the algorithm environment
+%\makeatletter
+\providecommand\textquotedblplain{%
+  \bgroup\addfontfeatures{Mapping=}\char34\egroup}
+\providecommand{\tabularnewline}{\\}
+\floatstyle{ruled}
+\newfloat{algorithm}{tbp}{loa}
+\providecommand{\algorithmname}{Algoritmi}
+\floatname{algorithm}{\protect\algorithmname}
+%\makeatother
+
+% allow algorithms to break pages
+\makeatletter
+\newenvironment{breakablealgorithm}
+  {% \begin{breakablealgorithm}
+   \begin{center}
+     \refstepcounter{algorithm}% New algorithm
+     \hrule height.8pt depth0pt \kern2pt% \@fs@pre for \@fs@ruled
+     \renewcommand{\caption}[2][\relax]{% Make a new \caption
+       {\raggedright\textbf{\fname@algorithm~\thealgorithm} ##2\par}%
+       \ifx\relax##1\relax % #1 is \relax
+         \addcontentsline{loa}{algorithm}{\protect\numberline{\thealgorithm}##2}%
+       \else % #1 is not \relax
+         \addcontentsline{loa}{algorithm}{\protect\numberline{\thealgorithm}##1}%
+       \fi
+       \kern2pt\hrule\kern2pt
+     }
+  }{% \end{breakablealgorithm}
+     \kern2pt\hrule\relax% \@fs@post for \@fs@ruled
+   \end{center}
+  }
+\makeatother
+
+\addbibresource{bibliography.bib}
+
+% baselinestrechillä voi säätää koodirivien riviväliä
+\setminted{
+breaklines,
+baselinestretch=1,
+linenos
+}
+
+\begin{document}
+
+\pubyear{2022}
+\pubmonth{11}
+\publab{Ohjelmistotekniikka}
+\publaben{Software Engineering}
+\pubtype{M.Sc. Tech. Thesis}
+\title{Storing encrypted patient data in a public cloud}
+\author{Konsta Purtsi}
+
+\maketitle
+\input{abstract.tex}
+
+% mandatory
+\tableofcontents
+
+\begin{comment}
+% if you want a list of figures
+\listoffigures
+
+% if you want a list of tables
+\listoftables
+
+% if you want a list of acronyms
+\listofacronyms
+
+\end{comment}
+
+% change the name if the default doesn't sound right
+\renewcommand{\algorithmname}{\listingscaption}
+
+
+% chapters
+\input{01-introduction}
+\input{02-data-security-laws}
+\input{03-cryptography-background}
+\input{04-technologies-introduction}
+\input{05-technical-analysis}
+\input{06-implementation}
+\input{07-effect-of-encryption}
+% \input{08-improving-performance}
+\input{08-conclusion}
+% The thesis main content ends here.
+
+\printbibliography
+
+\input{A-application-code}
+\input{B-infrastructure-code}
+
+\end{document}

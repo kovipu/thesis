@@ -1,0 +1,60 @@
+\chapter{Introduction} \label{introduction}
+
+The Finnish laws on individual's data security as well as The General Data Protection Regulation (EU) (GDPR) are legislations requiring caution from an organization handling private data.
+A healthcare organization is required to take extreme caution when handling health data as the GDPR considers individual's health data "a special category of personal data", as it is sensitive by nature.
+Healthcare organizations must comply with these regulations or face sanctions.
+
+Public cloud providers such as Google Cloud Platform claim to reduce the work required for developing and maintaining an application.
+However, organizations using a public cloud must take even higher caution when dealing with an individual's data.
+The cloud providers promise proper security measures without any configuration needed.
+The developer must still be cautious when storing data in a public cloud.
+
+There are multiple strategies for designing and implementing secure web applications.
+Modern cryptographic algorithms use secret keys to encrypt and decrypt data to keep it secure during storage and transit.
+Building key-based encryption in the cloud is no simple task.
+The keys to encrypt the data cannot be stored along with the data because of the risk of the database leaking allowing a malicious actor to gain access to the data.
+However, storing the keys separate from the data might cause I/O issues on a large scale.
+% Meneekö liian syvälle introluvuksi?
+% Näkisin että vielä ihan sopivalla tasolla tämä kuvaus. -SR
+
+\section{Research questions and the goal of the thesis}
+
+The goal of the thesis is to research how the legislations in Finland affect healthcare organizations.
+Both the Finnish law and the GDPR are analyzed in terms of how they affect the technical implementation of a digital service hosted in a public cloud.
+The research includes a technical specification and implementation of a server application built to comply with the regulations.
+
+Research questions of the thesis:
+\begin{enumerate}
+    \item What is required from a healthcare organization to comply with the Finnish law and the GDPR in terms of technical implementation?
+    \item What is a strong enough encryption strategy for handling individual's health data in a public cloud?
+    \item How does implementing encryption affect the complexity of an application?
+    \item How does the encryption affect the performance of an application? 
+\end{enumerate}
+
+\section{Scope and research methods}
+
+The scope of this thesis is to research and analyze how a Finnish healthcare organization should abide by the General Data Protection Regulation in the European Union and the Finnish law.
+The legislations are analyzed in terms of their effect on the technical implementation of an application.
+
+This thesis describes cloud computing generally and the Google Cloud Platform specifically in terms of handling encrypted patient data.
+The application and infrastructure are built to handle the data in encrypted state in storage and in transit between the database and the server application.
+Handling security between the client and the server such as authorization and authentication is outside the scope.
+
+The application is built to match a specification close to a real world application.
+The encryption strategy is decided to be secure enough for handling individual's health data.
+The difference in complexity between no encryption and the implemented encryption is analyzed.
+
+The application is also designed with a large amount of simultaneous connections in mind.
+The finished application is load tested in both encrypted and unencrypted modes.
+The load test results are analyzed in terms of performance difference.
+
+\section{Structure of the thesis}
+
+The thesis consists of background research on the topics of legislations, encryption and the technologies used.
+Chapter \ref{data security} covers the legislations in effect in Finland and how a healthcare organization must comply with them.
+Chapter \ref{cryptography background} covers the theory behind cryptography and how it can be used in a secure web application.
+Chapter \ref{technologies introduction} introduces the technologies used in the conducted research.
+Chapter \ref{technical analysis} lists the technical requirements of the application and the architectural design, technology choices and encryption strategy used.
+Chapter \ref{technical implementation} goes through the technical implementation of the application and the infrastructure.
+Chapter \ref{effect of encryption} analyses the effect of implementing encryption on the complexity of the program code and the infrastructure as well as the performance of the application.
+Chapter \ref{conclusion} summarizes the thesis and discusses options for improving the application as well as options for further research.

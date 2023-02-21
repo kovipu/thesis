@@ -1,0 +1,133 @@
+\chapter{Patient data in a public cloud} \label{data security}
+
+This chapter covers laws effective in Finland on storing individual's health data.
+The jurisdiction is analyzed from the point of view of a healthcare provider storing patient data in a public cloud.
+The laws are analyzed more by their technical requirements rather than their juridical ones.
+
+\section{Patient data security laws in Finland}
+
+The Finnish law includes multiple legislations to follow when storing patient data.
+The main laws on this topic are for example Data Protection Act\footnote{Tietosuojalaki} 1050/2018, Act on the Status and Rights of Patients\footnote{Laki potilaan asemasta ja oikeuksista} 785/1992 and Act on the Electronic Processing of Client Data in Healthcare and Social Welfare\footnote{Laki sosiaali- ja terveydenhuollon asiakasti- etojen sähköisestä käsittelystä} 784/2021.
+The main legislation to follow on data protection in Finland, which the Finnish laws complement and expand on, is the General Data Protection Regulation of the European Union.
+\cite{valvira}
+
+The General Data Protection Regulation (EU) (GDPR) is a regulation on data protection and security in the European Union (EU).
+GDPR applies to all enterprises storing the data of an individual living inside the European Economic Area (EEA), regardless whether the processing itself takes place in the Union.
+GDPR aims to protect individuals' data and enhance their control over it, while also making the regulation simpler to follow for companies.
+\cite{gdpr}
+
+\section{Technical requirements of the laws in Finland}
+
+The GDPR requires the data controller --- an organization that collects data from EU residents --- to provide the individual with information and options.
+The GDPR also gives some specifics on how to handle the data securely.
+Many of these mandates may be fulfilled using technology.
+\cite{gdpr}
+
+The GDPR mandates that the data controller is responsible for notifying the user and collecting consent before collecting any personal data.
+The individual must explicitly give consent for example by ticking a box. Silence, inactivity or pre-ticked boxes do not count as consent.
+The consent must also be stored in a way that the data controller can prove that they have collected it.
+\cite{gdpr}
+
+After collecting consent, the individual has the right to know whether their data is being processed.
+The consent may also be given or withdrawn at any time at will.
+It should be just as easy to withdraw consent as it is to give it.
+At the point the data is collected, the user must be informed of the time period the data will be stored.
+If the data is no longer needed for the purpose it was collected for, it should be deleted.
+The data controller must also provide a copy of the individual's data when requested.
+The exported data must be in ''a structured and commonly used and machine-readable'' format.
+\cite{gdpr}
+
+The GDPR also mandates a right to be forgotten for the individual.
+This means the individual can request the removal of all data concerning him or her.
+The individual may also request the data to be transferred to another data controller.
+The controller must oblige to these requests without any undue delay.
+\cite{gdpr}
+
+Collecting parental consent is also required by the GDPR.
+Child age is defined by the specific member state, in the GDPR regulations the default being 16 years. \cite{gdpr}
+In the case of Finland the specific age is 13 years \cite{tietosuojalaki}. 
+In Finland, a child can use advisory, support or preemptive services without their parent's consent \cite{tietosuojavaltuusto}.
+
+Handling a Finnish resident's social security number\footnote{Sosiaaliturvatunnus} (SSN) is regulated by The Data Protection Act.
+Permission for processing the individual's SSN is granted for identification of the individual for legal purposes, such as healthcare.
+The SSN must not be printed redundantly on any documents.
+\cite{tietosuojalaki}
+
+The GDPR specifies some guidelines on data security.
+While not too technical, these guidelines give organizations good pointers on how to handle data.
+Data security standards should be judged on a per-case basis, but some of the things the GDPR suggests are \cite{gdpr}:
+\begin{itemize}
+    \item the pseudonymization and encryption of personal data;
+    \item the ability to ensure the ongoing confidentiality, integrity, availability and resilience of processing systems and services;
+    \item the ability to restore the availability and access to personal data in a timely manner in the event of a physical or technical incident;
+    \item a process for regularly testing, assessing and evaluating the effectiveness of technical and organizational measures for ensuring the security of the processing.
+\end{itemize}
+
+The data security measures can be confirmed appropriate by following an approved code of conduct or by an approved certification mechanism.
+Each member state should provide a public authority to supervise GDPR compliance.
+This supervisory authority has a broad and sweeping power over data controllers' activities.
+\cite{gdpr}
+In Finland, this supervisory authority is The Office of the Data Protection Ombudsman\footnote{Tietosuojavaltuutetun toimisto}. \cite{tietosuojavaltuutettu}
+
+\section{Requirements for storing patient data}
+
+The GDPR is very far from actual technical implementation, and only suggests the developer to consider the pseudonymization and encryption of personal data regarding the implementation.
+The GDPR suggests considering the level of security required for data storage based on the nature of the data as well as the risks related to any incidents.
+An individual's health data is considered "a special category of personal data" so the developer should take extreme caution when dealing with said data, as it is sensitive by nature.
+\cite{gdpr}
+
+Complying with the GDPR regulations will take a fair amount of technology, even if just for the bookkeeping.
+Not only must data controllers make individuals’ personal data transparent and editable, they must make records of the individuals’ wishes available to supervisory authorities or else face sanction.
+Any of these failures is punishable by a significant fine. \cite{gdpr}
+\begin{itemize}
+    \item Failure by a Controller or Processor, or their representative, to provide information on request to a supervisory authority required for the performance of their tasks.
+    \item Failure by a Controller or Processor to provide access to all personal data or information necessary for performance of supervisory authority tasks.
+    \item Failure to allow access to premises, including any data processing equipment.
+    \item Failure to comply with an order to comply with an individual's requests.
+    \item Failure to comply with an order to bring processing in to compliance in a specified manner and in a specified period.
+    \item Failure to comply with an order to communicate a personal data breach to individuals.
+    \item Failure to comply with a prohibition on processing.
+    \item Failure to comply with an order to rectify, restrict, or erase data and to notify 3rd parties of such actions.
+    \item Failure of a Certifying Body to comply with an order to cease issuing certifications.
+    \item Failure to comply with an order to cease transfers of data to 3rd countries or an international organization.
+\end{itemize}
+
+Validating the privacy practices of an organization GDPR-compliant is not a well-defined task.
+GDPR says to follow a code of conduct, but such codes are hard to come by.
+Getting a certification from a supervisory authority is another way to validate an organization's GDPR compliance.
+\cite{gdpr}
+
+\section{GDPR compliance in a public cloud}
+
+Public cloud is characterized by providing computation, storage \& networking services outside of one's current organization.
+It also offers near infinite scalability and on-demand deployments at an inexpensive price.
+Companies have adopted the public cloud at a fast speed in recent years – a trend that is probably not going to be reversed.
+For example, Amazon Web Services (AWS) provides cloud computing infrastructure to over 1 million organizations in 190 countries.
+\cite{sevensins}
+
+As modern computing systems focus on performance, cost-efficiency, reliability, and scalability, not many organizations give enough thought to security and privacy.
+The rise of the GDPR forces organizations to face the issues on privacy and security.
+Usage of a public cloud complicates these problems even more, as multiple organizations can share computing and networking resources.
+\cite{sevensins}
+
+While a multitenant cloud has a lot of benefits for the organization using it, sharing a virtualized pool of computing and networking services is also a possible cause for security issues.
+When multiple organizations share the same resource, it is a lot more likely for personal data to leak or for an unauthorized party to gain access to the data.
+Public cloud providers' lack the tools required to monitor and audit these types of security issues, and leave a lot of the problems for the developer to deal with.
+\cite{cloudauditing}
+
+Right to be forgotten is not a simple task to adhere to in the real world.
+Not only must all manually collected backups be cleared of the individual's data, the cloud provider may also have taken copies of the data for performance, security and scalability reasons.
+Google reports that their cloud services can take up to 180 days to get the data fully deleted.
+\cite{sevensins}
+
+Cloud services are quite opaque in terms of where the data is being processed.
+The individual might not know where their data is sent when using such services.
+This is especially a problem for multi-layer cloud services, where parts of the infrastructure might be handled by an entirely separate cloud services, for purposes such as handling payments and collecting analytics.
+The GDPR requires organizations using cloud to solve this issue by giving precise information on where the individual's data is being sent when asking for consent.
+Knowing where the data is handled might not be clear to the developer either.
+\cite{sevensins}
+
+Public cloud services do also provide quite a few tools for hardening a service for better privacy and security.
+Cloud providers allow separating resources into virtual private networks with configurable firewalls between the network and other resources inside the cloud or the internet.
+Public cloud also has tooling for implementing for example public key cryptography and Google Cloud encrypts all data stored on their cloud storage at rest by default. 
+\cite{googlecloud}

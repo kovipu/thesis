@@ -1,0 +1,60 @@
+\chapter{Conclusion} \label{conclusion}
+
+The laws regarding storing individuals' private data in effect in Finland require additional technical knowledge and work from developers dealing with such data.
+Healthcare organizations are forced to comply with the requirements and possibly implement additional security measures to their digital services.
+The GDPR also adds extra measures to using a third party hosting provider.
+Users of any public cloud provider have to take extra caution no third party can gain access to the sensitive data.
+The individual must also be fully informed on where and how their data is stored and processed.
+
+The GDPR and the Finnish law do not go into specifics regarding the technical implementation.
+However, encryption and pseudonymization of data is encouraged to keep the data safe from a malicious actor.
+These requirements have to be considered when implementing a digital service that stores any private data.
+
+\section{The results of the research}
+
+The proof-of-concept project built to mimic a real world healthcare service shows clear results on how encryption affects a cloud-based application's implementation and performance. Implementing encryption requires additional knowledge on cryptography from the development team.
+However, the developer of a web application should almost never create and deploy their own cryptographic algorithm.\cite{dont-roll-crypto}
+Libraries and tools exist for implementing encryption which should be preferred over custom cryptography implementations.
+Nevertheless, implementing encryption will increase the complexity of the application.
+
+In the case of the POC project created for this thesis, a lot of the complexity is handled by existing solutions such as Google Cloud Platform’s Cloud Key Management and Node.js’ built-in crypto-library.
+However, implementing encryption increased the codebase size of both the application and the infrastructure by quite a bit.
+This increased complexity makes the codebase harder to understand and therefore increases the cost to maintain it.
+
+The added computation required by the encryption also affected the performance of the application.
+Load testing shows a clear increase in response times when encryption is enabled.
+Similarly, the throughput of the application decreased with encryption.
+However, this difference between the two tests is not as large as it might be assumed.
+The application is most likely more limited by its I/O.
+The performance hit might still affect the costs of hosting the application in a public cloud.
+
+\section{Options for improvement}
+
+The POC project was built to mimic a real world healthcare service’s use case and implementation.
+However, it is not feature-complete enough to be deployed in to the real world.
+All the tested aspects of the application have room for improvement.
+
+The security of the application could be further improved in a few different ways.
+The data is only being kept safe from a third party gaining access to the database, as Google still has access to all the keys required to decrypt it.
+This could be improved by storing any of the keys required to decrypt the data outside of the Google Cloud.
+
+In the POC project, the key encryption key is stored inside program memory during runtime.
+This responsibility could be moved to the Cloud Key Management by using its API to encrypt and decrypt the data encryption keys.
+This would make it harder for a malicious actor to gain access to both, the KEK and the DEK.
+In a real world use case, the KEK would also have to be rotated regularly, which was not considered in the POC implementation.
+The secrets could also be handled separately from the Terraform configuration, making sure they are not committed to version control in either Terraform’s configuration or state files.
+
+The added complexity of implementing encryption could also be handled better.
+The application could use another layer of abstraction handling the encryption.
+This abstraction could be implemented between the business logic and the database layer, making reasoning about the application logic on a high level easier without having to consider the underlying encryption.
+The infrastructure configuration could separate encryption-specific configuration to its own modules.
+
+The performance of the application can also be improved.
+The application was found to handle 2000 simultaneous requests quite well while running in a single process.
+The server application is stateless, which means it can natively scale into multiple processes in a fully managed service such as GCP’s Cloud Run.
+The database’s performance has space for performance improvement as well -- perhaps by adding a fast in-memory cache.
+
+The \texttt{GET /practitioners/} endpoint failing could be improved with a better design.
+In a real world scenario, loading all the rows from an entire database table is not a good idea.
+Instead, the client and the server should be designed to use pagination.
+This reduces the bottleneck in loading data, as the data is not loaded all at once.
